@@ -1,36 +1,198 @@
 from pptx import Presentation
-from pptx.util import Inches
+from pptx.util import Inches, Pt
+from pptx.dml.color import RGBColor
 
-def create_value_proposition_presentation():
+def set_font(para, font_name='Arial', font_size=Pt(18), color=RGBColor(0, 0, 0)):
+    run = para.add_run()
+    run.font.name = font_name
+    run.font.size = font_size
+    run.font.color.rgb = color
+    return run
+
+def create_professional_presentation():
     # Create a new presentation
     ppt_pres = Presentation()
+
+    # Slide 1: Title Slide
+    slide = ppt_pres.slides.add_slide(ppt_pres.slide_layouts[0])  # Title Slide layout
+    title = slide.shapes.title
+    subtitle = slide.placeholders[1]
+    title.text = "Future of Telecommunications"
+    subtitle.text = "Insights and Perspectives\nYour Name\nDate"
+
+    # Slide 2: Introduction
+    slide = ppt_pres.slides.add_slide(ppt_pres.slide_layouts[1])  # Title and Content layout
+    slide.shapes.title.text = "Introduction"
+    content = slide.placeholders[1]
+    content.text = ""  # Clear default text
+    p = content.text_frame.add_paragraph()
+    set_font(p, font_size=Pt(20))
+    p.text = (
+        "The telecommunications industry is at a pivotal point, driven by rapid technological advancements and changing consumer expectations. "
+        "This presentation explores future trends, their implications for projects and operations, and strategies for enhancing client partnerships."
+    )
+
+    # Slide 3: Future Trends in Telecommunications
+    slide = ppt_pres.slides.add_slide(ppt_pres.slide_layouts[1])
+    slide.shapes.title.text = "Future Trends in Telecommunications"
+    content = slide.placeholders[1]
+    content.text = ""  # Clear default text
+    p = content.text_frame.add_paragraph()
+    set_font(p, font_size=Pt(20))
+    p.text = "Key Trends:"
     
-    # Array of titles and contents
-    titles_and_contents = [
-        ("Introduction", "Partnering with clients to harness future telecom trends can significantly enhance value propositions and drive growth. This presentation outlines key trends and strategies to be future-ready."),
-        ("5G and Beyond", "• Maximize 5G Benefits: Leverage 5G's enhanced speed and lower latency to offer innovative solutions and services.\n• Prepare for 6G: Invest in R&D and partnerships to be at the forefront of 6G technology, integrating AI and next-gen capabilities for future-proof solutions."),
-        ("Internet of Things (IoT) Expansion", "• Capitalize on Connected Devices: Develop IoT solutions that connect diverse devices, enhancing automation and operational efficiency for clients.\n• Support Smart Cities: Collaborate on smart city projects to offer cutting-edge urban solutions, improving infrastructure and public services."),
-        ("Edge Computing", "• Implement Edge Solutions: Provide edge computing solutions to reduce latency and enable real-time data processing for clients' critical applications.\n• Enhance IoT and AI: Support IoT and AI initiatives with edge computing, offering faster analytics and decision-making capabilities."),
-        ("Artificial Intelligence and Machine Learning", "• Optimize Networks: Utilize AI and ML to enhance network performance, predict maintenance needs, and improve client service through automation.\n• Personalize Experiences: Use AI to deliver personalized customer experiences and targeted marketing solutions for clients."),
-        ("Enhanced Security", "• Strengthen Cybersecurity: Offer robust cybersecurity solutions to protect client networks and data from emerging threats.\n• Adopt Quantum Cryptography: Prepare clients for the future with advanced encryption methods provided by quantum computing advancements."),
-        ("Global Connectivity Initiatives", "• Expand Reach: Partner on projects to connect rural and remote areas, bridging the digital divide and extending client services.\n• Leverage Satellite Internet: Utilize satellite technology to provide global coverage and enhance connectivity options for clients."),
-        ("Regulatory and Policy Changes", "• Navigate Net Neutrality: Stay ahead of regulatory changes and help clients adapt to evolving net neutrality policies.\n• Manage Spectrum Allocation: Assist clients in acquiring and optimizing spectrum resources to stay competitive in the market."),
-        ("Economic and Business Models", "• Explore New Revenue Streams: Collaborate on innovative business models such as digital services and cloud computing to drive new revenue opportunities.\n• Optimize Cost Management: Help clients balance infrastructure costs with revenue growth through strategic cost management."),
-        ("Customer Experience", "• Enhance Support: Provide omnichannel support solutions to improve customer satisfaction and engagement.\n• Offer Flexible Plans: Design customizable plans to meet diverse customer needs and preferences."),
-        ("Conclusion", "By leveraging these telecom trends and strategic insights, we can partner with clients to enhance their value propositions, drive growth, and ensure they are well-positioned for the future.\nOur collaboration will pave the way for innovation, improved services, and sustained competitive advantage.")
+    trends = [
+        "5G and Beyond: Enhanced speed and connectivity will revolutionize services.",
+        "Internet of Things (IoT): Growth in connected devices will lead to new service models.",
+        "Edge Computing: Processing data closer to the source reduces latency.",
+        "Artificial Intelligence (AI): AI will optimize network management and customer service."
     ]
     
-    # Loop through the titles and contents to create slides
-    for title, content in titles_and_contents:
-        slide = ppt_pres.slides.add_slide(ppt_pres.slide_layouts[1])  # Use layout 1 for title and content
-        title_placeholder = slide.shapes.title
-        content_placeholder = slide.placeholders[1]
-        
-        title_placeholder.text = title  # Set slide title
-        content_placeholder.text = content  # Set slide content
+    for trend in trends:
+        p = content.text_frame.add_paragraph()
+        set_font(p, font_size=Pt(18))
+        p.text = f"- {trend}"
+
+    # Slide 4: Impact of Future Trends on Projects
+    slide = ppt_pres.slides.add_slide(ppt_pres.slide_layouts[1])
+    slide.shapes.title.text = "Impact of Future Trends on Projects"
+    content = slide.placeholders[1]
+    content.text = ""  # Clear default text
+    p = content.text_frame.add_paragraph()
+    set_font(p, font_size=Pt(20))
+    p.text = "As these trends evolve, they will influence:"
     
+    impacts = [
+        "Project Methodologies: Agile and DevOps approaches will be essential to adapt quickly.",
+        "Client Expectations: Clients will demand faster, more reliable services with innovative solutions.",
+        "Operational Efficiency: Automation and AI will streamline processes, reducing costs and improving service delivery.",
+        "Risk Management: New technologies introduce risks that require robust management strategies."
+    ]
+    
+    for impact in impacts:
+        p = content.text_frame.add_paragraph()
+        set_font(p, font_size=Pt(18))
+        p.text = f"- {impact}"
+
+    # Slide 5: Influence on Accenture Operations
+    slide = ppt_pres.slides.add_slide(ppt_pres.slide_layouts[1])
+    slide.shapes.title.text = "Influence on Accenture Operations"
+    content = slide.placeholders[1]
+    content.text = ""  # Clear default text
+    p = content.text_frame.add_paragraph()
+    set_font(p, font_size=Pt(20))
+    p.text = "The future trends will necessitate changes in Accenture's operations:"
+    
+    influences = [
+        "Service Offerings: Development of new services around 5G, IoT, and AI.",
+        "Client Engagement: Enhanced collaboration with clients through co-innovation.",
+        "Talent Acquisition: Need for skilled professionals in AI, data analytics, and cybersecurity.",
+        "Sustainability Initiatives: Focus on reducing the carbon footprint of telecom operations."
+    ]
+    
+    for influence in influences:
+        p = content.text_frame.add_paragraph()
+        set_font(p, font_size=Pt(18))
+        p.text = f"- {influence}"
+
+    # Slide 6: Partnering with Clients
+    slide = ppt_pres.slides.add_slide(ppt_pres.slide_layouts[1])
+    slide.shapes.title.text = "Partnering with Clients"
+    content = slide.placeholders[1]
+    content.text = ""  # Clear default text
+    p = content.text_frame.add_paragraph()
+    set_font(p, font_size=Pt(20))
+    p.text = "To enhance partnerships and increase value propositions:"
+    
+    strategies = [
+        "Leverage Insights: Use data analytics to provide personalized solutions.",
+        "Innovative Solutions: Collaborate on developing new products and services that address client needs.",
+        "Future-Ready Strategies: Prepare clients for upcoming trends through education and resources.",
+        "Feedback Loops: Establish mechanisms for continuous client feedback to improve offerings."
+    ]
+    
+    for strategy in strategies:
+        p = content.text_frame.add_paragraph()
+        set_font(p, font_size=Pt(18))
+        p.text = f"- {strategy}"
+
+    # Slide 7: Current Trends
+    slide = ppt_pres.slides.add_slide(ppt_pres.slide_layouts[1])
+    slide.shapes.title.text = "Current Trends in Telecommunications"
+    content = slide.placeholders[1]
+    content.text = ""  # Clear default text
+    p = content.text_frame.add_paragraph()
+    set_font(p, font_size=Pt(20))
+    p.text = "Current trends include:"
+    
+    current_trends = [
+        "Remote Work: Increased demand for reliable connectivity as more employees work from home.",
+        "Cybersecurity: Growing concerns over data security and privacy.",
+        "Cloud Services: Shift towards cloud-based solutions for flexibility and scalability.",
+        "Sustainability: Rising importance of environmentally friendly practices in telecom operations."
+    ]
+    
+    for trend in current_trends:
+        p = content.text_frame.add_paragraph()
+        set_font(p, font_size=Pt(18))
+        p.text = f"- {trend}"
+
+    # Slide 8: Addressing Industry-Specific Problems
+    slide = ppt_pres.slides.add_slide(ppt_pres.slide_layouts[1])
+    slide.shapes.title.text = "Addressing Industry-Specific Problems"
+    content = slide.placeholders[1]
+    content.text = ""  # Clear default text
+    p = content.text_frame.add_paragraph()
+    set_font(p, font_size=Pt(20))
+    p.text = "Accenture can contribute by:"
+    
+    solutions = [
+        "Digital Transformation: Helping clients transition to digital-first operations.",
+        "Cybersecurity Solutions: Providing robust security frameworks to protect client data.",
+        "Sustainable Practices: Advising on green technologies and practices to reduce environmental impact.",
+        "Innovation Hubs: Establishing centers for co-innovation to develop new solutions."
+    ]
+    
+    for solution in solutions:
+        p = content.text_frame.add_paragraph()
+        set_font(p, font_size=Pt(18))
+        p.text = f"- {solution}"
+
+    # Slide 9: Conclusion
+    slide = ppt_pres.slides.add_slide(ppt_pres.slide_layouts[1])
+    slide.shapes.title.text = "Conclusion"
+    content = slide.placeholders[1]
+    content.text = ""  # Clear default text
+    p = content.text_frame.add_paragraph()
+    set_font(p, font_size=Pt(20))
+    p.text = "In conclusion, understanding future trends in telecommunications is crucial for:"
+    
+    conclusions = [
+        "Adapting project strategies to meet evolving client needs.",
+        "Enhancing operational efficiency and service delivery.",
+        "Building strong, future-ready partnerships with clients."
+    ]
+    
+    for conclusion in conclusions:
+        p = content.text_frame.add_paragraph()
+        set_font(p, font_size=Pt(18))
+        p.text = f"- {conclusion}"
+
+    # Slide 10: Q&A
+    slide = ppt_pres.slides.add_slide(ppt_pres.slide_layouts[1])
+    slide.shapes.title.text = "Q&A"
+    content = slide.placeholders[1]
+    content.text = ""  # Clear default text
+    p = content.text_frame.add_paragraph()
+    set_font(p, font_size=Pt(20))
+    p.text = "Thank you for your attention!"
+    
+    p = content.text_frame.add_paragraph()
+    set_font(p, font_size=Pt(18))
+    p.text = "Questions?"
+
     # Save the presentation
-    ppt_pres.save('Value_Proposition_Presentation.pptx')
+    ppt_pres.save(r'C:\Users\priti\OneDrive\Documents\Pic\Week3_OJT_yourname.pptx')
 
 # Call the function to create the presentation
-create_value_proposition_presentation()
+create_professional_presentation()
